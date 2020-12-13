@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Json Post</title>
+<script type="text/javascript" 
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+</head>
+<body>
+	Name:<input type = "text" id = "name" value = "Amy"/><br/>
+	Age:<input type = "text" id = "age" value = "20"/><br/>
+	<button id = "send">Send to Server</button>
+	<button id = "createArray">CreateArray</button>
+	<button id = "sendArray">send Array</button>
+	
+	<div id = "div1">Show Message</div>
+	<script>
+		var data = [];
+		function result2(msg){
+			$("#div1").html(msg);
+		}
+		function sendArry(){
+			var str = JSON.stringify(data);
+			$.post("JsonArrayServlet",{"stuArray":str},result2);
+		}
+	
+		function create(){
+			var n = $("#name").val();
+			var a = $("#age").val();
+			var obj = new Object();
+			obj.name = n;
+			obj.age = a;
+			data.push(obj);
+			alert(JSON.stringify(data));
+		}	
+	
+		function result(data){
+			alert(data);
+		}
+		function excute(){
+			var n = $("#name").val();
+			var a = $("#age").val();
+			var obj = new Object();
+			obj.name = n;
+			obj.age = a;
+			alert(JSON.stringify(obj));
+			$.post("JsonPostServlet",{"stu":JSON.stringify(obj)},result);
+			
+		}
+		
+		
+		
+		function start(){
+			$("#send").click(excute);
+			$("#createArray").click(create);
+			$("#sendArray").click(sendArry);
+		}
+		$(document).ready(start);
+	</script>
+</body>
+</html>
