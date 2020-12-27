@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Query DB</title>
+
+<style type="text/css">
+.oddColor {
+	background-color: lightblue
+}
+
+.evenColor {
+	background-color: yellow
+}
+</style>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+
+</head>
+<body>
+	<button>Query</button>
+	<div id="div1">Query Data</div>
+
+	<script>
+		function getQueryData(data){
+			
+			$("#div1").html(data);
+			/*
+			$("tr:odd").addClass("oddColor");
+			$("tr:even").addClass("evenColor");*/
+		}
+		
+		function query(){
+			$.get("supplierServlet",getQueryData);
+		}
+		function start(){
+			
+			$("button").click(query);
+			
+		}
+		$(document).ready(start);
+	</script>
+</body>
+</html>
